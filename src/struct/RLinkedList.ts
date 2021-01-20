@@ -40,6 +40,32 @@ class RLinkedList {
     }
 
     /**
+     * 删除
+     * @param index 
+     */
+    public remove(index: number) {
+        if (index < 0 || index >= this.size) {
+            throw new Error('params error');
+        }
+        if (this.head == null) {
+            throw new Error('head is null')
+        }
+        if (index == 0) { // 头
+            this.head = this.head.next;
+        } else if (index == this.size - 1) { // 尾
+            let prevNode: Node = this.get(index - 1);
+            prevNode.next = null;
+            this.tail = prevNode;
+        } else { // 中间
+            let currNode = this.get(index);
+            let prevNode = this.get(index - 1);
+
+            prevNode.next = currNode.next;
+        }
+        this.size --;
+    }
+
+    /**
      * 获取
      * @param index 
      */

@@ -8,6 +8,7 @@ class Main {
     }
 
     public static test() {
+        console.log('start....')
         var linkedList: RLinkedList = new RLinkedList();
         linkedList.insert(3, 0);
         linkedList.insert(5, 1);
@@ -19,6 +20,9 @@ class Main {
         console.log(linkedList.toString());
 
         linkedList.insert(200, 3);
+        console.log(linkedList.toString());
+
+        linkedList.remove(0);
         console.log(linkedList.toString());
         // linkedList.insert(201, 3);
         // console.log(linkedList.toString());
