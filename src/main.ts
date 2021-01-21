@@ -1,6 +1,7 @@
 
 import RArray from './struct/RArray';
 import RLinkedList from './struct/RLinkedList';
+import RQueue from './struct/RQueue';
 
 class Main {
     constructor() {
@@ -8,24 +9,24 @@ class Main {
     }
 
     public static test() {
-        console.log('start....')
-        var linkedList: RLinkedList = new RLinkedList();
-        linkedList.insert(3, 0);
-        linkedList.insert(5, 1);
-        linkedList.insert(8, 2);
+        let queue: RQueue = new RQueue();
+        queue.enqueue(5);
+        queue.enqueue(7);
+        queue.enqueue(5);
+        queue.enqueue(9);
+        queue.enqueue(1);
+        queue.enqueue(1);
 
-        console.log(linkedList.toString());
+        console.log(queue.toString());
 
-        linkedList.insert(100, 2);
-        console.log(linkedList.toString());
+        console.log(queue.dequeue());
+        console.log(queue.toString());
 
-        linkedList.insert(200, 3);
-        console.log(linkedList.toString());
+        console.log(queue.dequeue());
+        console.log(queue.toString());
 
-        linkedList.remove(0);
-        console.log(linkedList.toString());
-        // linkedList.insert(201, 3);
-        // console.log(linkedList.toString());
+        console.log(queue.dequeue());
+        console.log(queue.toString());
     }
 }
 
