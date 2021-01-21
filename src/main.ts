@@ -3,6 +3,7 @@ import RArray from './struct/RArray';
 import RLinkedList from './struct/RLinkedList';
 import RQueue from './struct/RQueue';
 import RStack from './struct/RStack';
+import RBinaryTree from './struct/RBinaryTree';
 
 class Main {
     constructor() {
@@ -10,27 +11,7 @@ class Main {
     }
 
     public static test() {
-        let stack: RStack = new RStack();
-        stack.push(5);
-        stack.push(7);
-        stack.push(5);
-        stack.push(1);
-        stack.push(1);
-        stack.push(9);
-
-        console.log(stack.toString());
-
-        console.log(stack.pop());
-        console.log(stack.toString());
-
-        console.log(stack.pop());
-        console.log(stack.toString());
-
-        console.log(stack.pop());
-        console.log(stack.toString());
-
-        console.log(stack.pop());
-        console.log(stack.toString());
+        RBinaryTree.test();
     }
 }
 
