@@ -2,6 +2,7 @@
 import RArray from './struct/RArray';
 import RLinkedList from './struct/RLinkedList';
 import RQueue from './struct/RQueue';
+import RStack from './struct/RStack';
 
 class Main {
     constructor() {
@@ -9,24 +10,27 @@ class Main {
     }
 
     public static test() {
-        let queue: RQueue = new RQueue();
-        queue.enqueue(5);
-        queue.enqueue(7);
-        queue.enqueue(5);
-        queue.enqueue(9);
-        queue.enqueue(1);
-        queue.enqueue(1);
+        let stack: RStack = new RStack();
+        stack.push(5);
+        stack.push(7);
+        stack.push(5);
+        stack.push(1);
+        stack.push(1);
+        stack.push(9);
 
-        console.log(queue.toString());
+        console.log(stack.toString());
 
-        console.log(queue.dequeue());
-        console.log(queue.toString());
+        console.log(stack.pop());
+        console.log(stack.toString());
 
-        console.log(queue.dequeue());
-        console.log(queue.toString());
+        console.log(stack.pop());
+        console.log(stack.toString());
 
-        console.log(queue.dequeue());
-        console.log(queue.toString());
+        console.log(stack.pop());
+        console.log(stack.toString());
+
+        console.log(stack.pop());
+        console.log(stack.toString());
     }
 }
 

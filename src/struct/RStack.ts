@@ -1,11 +1,8 @@
 /**
- * 队列
+ * 栈
  */
-class RQueue {
-    //队头
+class RStack {
     private head: Node = null;
-    //队尾
-    private tail: Node = null;
     private size: number = 0;
 
     public constructor() {
@@ -13,50 +10,50 @@ class RQueue {
     }
 
     /**
-     * 入队
+     * 入栈
      * @param data 
      */
-    public enqueue(data: number) {
+    public push(data: number) {
         let insertNode: Node = new Node(data);
-
-        if (this.size == 0) { //队列为空
-            this.head = this.tail = insertNode;
+        if (this.size == 0) { //空
+            this.head = insertNode;
         } else {
-            this.tail.next = insertNode;
-            this.tail = insertNode;
+            insertNode.prev = this.head;
+            this.head.next = insertNode;
+            this.head = insertNode;
         }
 
         this.size ++;
     }
 
     /**
-     * 出队
+     * 出栈
      */
-    public dequeue(): number {
+    public pop(): number {
         if (this.size == 0) {
-            throw new Error('size is empty!');
+            throw new Error('stack is empty！');
         }
         let _data = this.head.data;
-        this.head = this.head.next;
+        this.head = this.head.prev;
         this.size --;
-
         return _data;
     }
 
     public toString(): string {
-        let temp = this.head;
+        let temp: Node = this.head;
         let str = '';
-        while(temp) {
+        while(temp != null) {
             str += temp.data + ' | ';
-            temp = temp.next;
+            temp = temp.prev;
         }
-        return str;
+        return str.split('').reverse().join('');
     }
 }
 
 class Node {
     private _data: number;
     private _next: Node = null;
+    private _prev: Node = null;
 
     public constructor(data: number) {
         this._data = data;
@@ -73,6 +70,14 @@ class Node {
     public get next(): Node {
         return this._next;
     }
+
+    public set prev(prev: Node) {
+        this._prev = prev;
+    }
+
+    public get prev(): Node {
+        return this._prev;
+    }
 }
 
-export default RQueue;
+export default RStack;
