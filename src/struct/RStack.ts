@@ -39,6 +39,13 @@ class RStack {
         return _data;
     }
 
+    /**
+     * 栈是否为空
+     */
+    public isEmpty(): boolean {
+        return this.size == 0 ? true : false; 
+    }
+
     public toString(): string {
         let temp: Node = this.head;
         let str = '';

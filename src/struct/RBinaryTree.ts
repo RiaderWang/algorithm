@@ -1,6 +1,9 @@
 /**
  * 二叉查找树
  */
+import RQueue from './RQueue';
+import RStack from './RStack';
+
 class RBinaryTree {
     private root: TreeNode = null;
 
@@ -83,6 +86,14 @@ class RBinaryTree {
         this.pastOrderTraveral(node.leftChild);
         this.pastOrderTraveral(node.rightChild);
         console.log(node.data);
+    }
+
+    private levelOrderTraveral() {
+        
+    }
+
+    private prevOrderTraveralWithStack() {
+
     }
 
     /**
