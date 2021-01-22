@@ -75,6 +75,8 @@ class RBinaryTree {
         this.inOrderTraveral(node.rightChild);
     }
 
+    /**************************************************非递归方式实现遍历，深度优先（前，中，后），广度优先（层级遍历）********************************************************/
+
     /**
      * 后序遍历（左，右，根）
      * @param node 
@@ -88,8 +90,25 @@ class RBinaryTree {
         console.log(node.data);
     }
 
+    /**
+     * 层序遍历
+     */
     private levelOrderTraveral() {
-        
+        let queue: Queue = new Queue();
+        let node: Q_TreeNode = null;
+        queue.enqueue(this.root);
+
+        while (!queue.isEmpty()) {
+            node = queue.dequeue();
+            console.log(node.nodeData.data);
+
+            if (node.nodeData.leftChild) {
+                queue.enqueue(node.nodeData.leftChild);
+            }
+            if (node.nodeData.rightChild) {
+                queue.enqueue(node.nodeData.rightChild);
+            }
+        }
     }
 
     private prevOrderTraveralWithStack() {
@@ -108,10 +127,75 @@ class RBinaryTree {
         tree.add(5);
         tree.add(6);
 
-        tree.out();
+        tree.levelOrderTraveral();
     }
 }
 
+class Stack {
+
+}
+
+class Queue {
+    private head: Q_TreeNode = null;
+    private tail: Q_TreeNode = null;
+    private size: number = 0;
+
+    public constructor() {
+
+    }
+
+    /**
+     * 入队
+     */
+    public enqueue(node: TreeNode) {
+        let q_TreeNode: Q_TreeNode = new  Q_TreeNode(node);
+        if (this.size == 0) { // 空
+            this.head = this.tail = q_TreeNode;
+        } else { 
+            this.tail.next = q_TreeNode;
+            this.tail = q_TreeNode;
+        }
+        this.size ++;
+    }
+
+    /**
+     * 出队
+     */
+    public dequeue(): Q_TreeNode {
+        if (this.size <= 0) {
+            throw new Error('queue is empty!')
+        }
+        let temp: Q_TreeNode = this.head;
+        this.head = this.head.next;
+        this.size --;
+        return temp;
+    }
+
+    public isEmpty() {
+        return this.size == 0 ? true : false;
+    }
+}
+
+class Q_TreeNode {
+    private _nodeData: TreeNode = null;
+    private _next: Q_TreeNode = null;
+
+    public constructor(nodeData: TreeNode) {
+        this._nodeData = nodeData;
+    }
+
+    public get nodeData(): TreeNode {
+        return this._nodeData;
+    }
+
+    public set next(next: Q_TreeNode) {
+        this._next = next;
+    }
+
+    public get next(): Q_TreeNode {
+        return this._next;
+    }
+ }
 
 class TreeNode {
     private _data: number;
