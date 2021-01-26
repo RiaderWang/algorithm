@@ -13,16 +13,7 @@ class Main {
     }
 
     public static test() {
-        let datas: Array<number> = [2,10,5,7,9,8,3,6,1,12,15,48,68,32,38,24];
-        let queue: PriorityQueue = new PriorityQueue();
-
-        for (let i: number = 0; i < datas.length; i++) {
-            queue.enqueue(datas[i]);
-        }
-
-        for(let i: number = 0 ; i < datas.length; i++) {
-            console.log(queue.dequeue());
-        }
+        PriorityQueue.test();
     }
 }
 
