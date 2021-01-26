@@ -46,7 +46,7 @@ class RBinaryTree {
         if (this.root == null) {
             throw new Error('tree is empty');
         }
-        this.inOrderTraveral(this.root);
+        this.pastOrderTraveral(this.root);
     }
 
     /**
@@ -75,8 +75,6 @@ class RBinaryTree {
         this.inOrderTraveral(node.rightChild);
     }
 
-    /**************************************************非递归方式实现遍历，深度优先（前，中，后），广度优先（层级遍历）********************************************************/
-
     /**
      * 后序遍历（左，右，根）
      * @param node 
@@ -89,6 +87,10 @@ class RBinaryTree {
         this.pastOrderTraveral(node.rightChild);
         console.log(node.data);
     }
+
+
+    
+    /**************************************************非递归方式实现遍历，深度优先（前，中，后），广度优先（层级遍历）********************************************************/
 
     /**
      * 层序遍历
@@ -112,11 +114,75 @@ class RBinaryTree {
     }
 
     private prevOrderTraveralWithStack() {
+        let stack: Stack = new Stack();
 
+        let node: TreeNode = this.root;
+
+        while(node != null || !stack.isEmpty()) {
+            
+            while(node != null) {
+                console.log(node.data);
+                stack.push(new Q_TreeNode(node));
+                node = node.leftChild;
+            }
+
+            if (!stack.isEmpty()) {
+                node = stack.pop().nodeData;
+                node = node.rightChild;
+            }
+        }
+    }
+
+    private inOrderTraveralWithStack() {
+        let stack: Stack = new Stack();
+        let node: TreeNode = this.root;
+
+        while(node != null || !stack.isEmpty()) {
+            
+            while(node != null) {
+                stack.push(new Q_TreeNode(node));
+                node = node.leftChild;
+            }
+
+            if (!stack.isEmpty()) {
+                node = stack.pop().nodeData;
+                console.log(node.data);
+                node = node.rightChild;
+            }
+        }
+    }
+
+    /**
+     * 非递归实现后序遍历 思路
+     * 两个栈，一个栈存储遍历输入，一个栈存储输出
+     */
+    private pastOrderTraveralWitchStack() {
+        let stack: Stack = new Stack();
+        let outStack : Stack = new Stack();
+        let node: TreeNode = this.root;
+
+        while(node != null || !stack.isEmpty()) {
+            if(node != null) {
+                stack.push(new Q_TreeNode(node));
+                outStack.push(new Q_TreeNode(node));
+
+                node = node.rightChild;
+            } else {
+                node = stack.pop().nodeData;
+                node = node.leftChild;
+            }
+        }
+
+        while(!outStack.isEmpty()) {
+            console.log(outStack.pop().nodeData.data);
+        }
     }
 
     /**
      * 测试用例
+     *     4
+     *   2   5
+     *  1 3   6
      */
     public static test() {
         let tree: RBinaryTree = new RBinaryTree();
@@ -127,12 +193,45 @@ class RBinaryTree {
         tree.add(5);
         tree.add(6);
 
-        tree.levelOrderTraveral();
+        tree.pastOrderTraveralWitchStack();
     }
 }
 
 class Stack {
+    private head: Q_TreeNode = null;
+    private size: number = 0;
+    
+    public constructor() {
+        
+    }
 
+    /**
+     * 入栈
+     * @param node 
+     */
+    public push(node: Q_TreeNode) {
+        let temp = this.head;
+        this.head = node;
+        this.head.next = temp;
+        this.size ++;
+    }
+
+    /**
+     * 出栈
+     */
+    public pop() {
+        if (this.size <= 0) {
+            throw new Error('stack is empty!');
+        }
+        let temp = this.head;
+        this.head = this.head.next;
+        this.size --;
+        return temp;
+    }
+
+    public isEmpty() {
+        return this.size == 0 ? true : false;
+    }
 }
 
 class Queue {
