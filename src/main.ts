@@ -6,6 +6,7 @@ import RStack from './struct/RStack';
 import RBinaryTree from './struct/RBinaryTree';
 import RHeap from './struct/RHeap'; 
 import PriorityQueue from './struct/PriorityQueue';
+import QuickSort from './sort/QuickSort';
 
 class Main {
     constructor() {
@@ -13,7 +14,7 @@ class Main {
     }
 
     public static test() {
-        PriorityQueue.test();
+        QuickSort.test();
     }
 }
 
