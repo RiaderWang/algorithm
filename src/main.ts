@@ -7,6 +7,8 @@ import RBinaryTree from './struct/RBinaryTree';
 import RHeap from './struct/RHeap'; 
 import PriorityQueue from './struct/PriorityQueue';
 import QuickSort from './sort/QuickSort';
+import RPRomise from './web/RPromise';
+import HeapSort from './sort/HeapSort';
 
 class Main {
     constructor() {
@@ -14,7 +16,7 @@ class Main {
     }
 
     public static test() {
-        QuickSort.test();
+        HeapSort.test();
     }
 }
 
