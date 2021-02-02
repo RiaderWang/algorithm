@@ -16,7 +16,7 @@ class Main {
     }
 
     public static test() {
-        HeapSort.test();
+        RPRomise.test();
     }
 }
 
