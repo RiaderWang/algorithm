@@ -82,18 +82,24 @@ const typeDemo = function() {
     let a6 = {};
     a6.a = 1;
     
-    let a7 = new Map();
+    let a7 = new Map(); // 一般用户存储key-value
     a7.a = 2;
     
-    let a8 = new Set();
+    let a8 = new Set(); // 一般用于存储key
     a8.a = 3;
     
     console.log(typeof(a5), typeof(a6), typeof(a7), typeof(a8));
     console.log(a5 instanceof Array, a6 instanceof Object, a7 instanceof Map, a8 instanceof Set);
+
+    let arr = [1, 2, 3, 4, 5];
+    let mapData = arr.map((item) => { // 返回一个新的数组
+        return item * 2;
+    })
+    console.log('map：', mapData);
 }
 
 module.exports = {
     base,
     objectConvert,
-    typeDemo
+    typeDemo,
 }

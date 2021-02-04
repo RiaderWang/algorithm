@@ -27,7 +27,9 @@ class RPRomise {
         // this.runPromiseAll();
         // this.runPromiseRace();
 
-        this.myPromise();
+        // this.myPromise();
+
+        this.asyncAwait();
     }
 
     /***********************************链式异步调用**********************************/
@@ -133,6 +135,48 @@ class RPRomise {
         MyPromise.race([p1, p2, p3]).then((data: any) => {
             console.log('race result：', data);
         })
+    }
+
+    /**************************async await原理****************************/
+    private asyncAwait() {
+        
+        function fetchData(params: any) {
+            return new Promise((resolve, rejected) => {
+                setTimeout(() => {
+                    resolve(2);
+                }, 2000);
+            })
+        }
+
+        async function getData(params: any) {
+            console.log('start');
+            let a = await fetchData(params);
+            console.log(a);
+            console.log('end');
+            return 'getData end';
+        }
+
+        // getData('s').then((res) => {console.log(res)});
+
+        function *gen(params: any) {
+            console.log('start');
+            let a = yield 1;
+            console.log(a);
+            let b = yield fetchData(params);
+            console.log(b);
+            let c = yield 3;
+            console.log(c);
+            console.log('end');
+            return 'getData end';
+        }
+
+        let g = gen(1);
+        g.next();
+        console.log(JSON.stringify(g.next()));
+        g.next();
+        g.next();
+        g.next();
+        g.next();
     }
 }
 
