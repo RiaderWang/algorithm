@@ -24,3 +24,5 @@
                DOM引用--
     cap4：事件循环和异步编程
     cap5：websocket和HTTP/2
+    cap6：WebAssembly
+    cap7：Web Workers
