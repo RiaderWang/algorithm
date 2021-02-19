@@ -26,3 +26,11 @@
     cap5：websocket和HTTP/2
     cap6：WebAssembly
     cap7：Web Workers
+
+2021-02-19：
+    cap7：Web Workers：HTML5新特性，浏览器的功能，单独起一个线程，不阻塞页面渲染和事件循环（主线程），适用于大量计算的任务。具体应用如下：
+          1：光线追踪
+          2：加解密
+    cap8：Service Workers
+    cap11：渲染引擎和优化其性能的技巧
+          
