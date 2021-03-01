@@ -98,8 +98,22 @@ const typeDemo = function() {
     console.log('map：', mapData);
 }
 
+const memoryDemo = function() {
+    function test(aa, bb) {
+        aa.item = 'changed';
+        bb = {item: 'changed'};
+    }
+    let aa = {item: 'unchange'};
+    let bb = {item: 'unchange'};
+
+    test(aa, bb);
+    console.log(aa);
+    console.log(bb);
+}
+
 module.exports = {
     base,
     objectConvert,
     typeDemo,
+    memoryDemo,
 }
