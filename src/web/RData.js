@@ -9,11 +9,44 @@ const base = function() {
     console.log(bool2, bool3);
 
     let a = 100;
-    let b = '1';
+    let b = '2';
     
     let add = a + b; // number和string相加时，会将number转换成string，最后连接成一个string
     let sub = a - b; // number和string相减时，会将string转换成number，最后得到一个number
-    console.log(add, sub, typeof(add), typeof(sub));
+    let mul = a * b; // number和string相乘时，会将string转换成number，最后得到一个number
+    let div = a / b; // number和string相除时，会将string转换成number，最后得到一个number
+    console.log(add, sub, mul, div, typeof(add), typeof(sub), typeof(mul), typeof(div));
+}
+
+/**基本类型的隐式转换 */
+const baseConversion = function() {
+    //对象和布尔值进行比较时，对象先转换为字符串，然后再转换为数字，布尔值直接转换为数字
+    console.log([] == false);
+    //结果是true，[]转换为字符串'',然后再转换为数字0，false转换为数字0
+
+    //对象和字符串进行比较时，对象转换为字符串，然后两者进行比较
+    console.log([1,2,3] == '1,2,3');
+    //结果是true [1,2,3] 转化为 '1,2,3'
+
+    //对象和字符串进行比较时，对象转换为字符串，然后两者进行比较
+    console.log([1] == 1);
+    //结果为true，[1]转换为'1'再转换为1
+
+    console.log(undefined == null) //true undefined和null 比较返回true，二者和其他值比较返回false
+    console.log(Number(null)) //0
+
+    // 注意
+    console.log({a: 1}.toString()) //{}的对象转换成string 时 是 '[object Object]'
+    console.log({} == 0) //false，{}的对象转换成string 时是'[object Object]'，而'[object Object]'转换成数值时，是NaN
+    console.log(NaN == NaN) //false
+    console.log({a: 1} == {a: 1}) //false
+
+    //{}转换为字符串是'[object Object]'
+    //'[object Object]'转换为数值时 NaN
+    //null 和undefined 是相等的
+    //要比较相等性之前，不能将null 和 undefined 转换成其他任何值
+    //如果有一个操作数是NaN，则相等操作符返回 false ，而不相等操作符返回 true。重要提示：即使两个操作数都是NaN，相等操作符也返回 false了；因为按照规则， NaN 不等于 NaN
+    //如果两个操作数都是对象，则比较它们是不是同一个对象，如果两个操作数都指向同一个对象，则相等操作符返回 true；否则， 返回false
 }
 
 /**对象转化 */
@@ -113,6 +146,7 @@ const memoryDemo = function() {
 
 module.exports = {
     base,
+    baseConversion,
     objectConvert,
     typeDemo,
     memoryDemo,
