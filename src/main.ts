@@ -10,13 +10,16 @@ import QuickSort from './sort/QuickSort';
 import RPRomise from './web/RPromise';
 import HeapSort from './sort/HeapSort';
 
+
+// import Entry from './design/Observer/Entry';
+import Entry from './design/Publish/Entry';
 class Main {
     constructor() {
 
     }
 
     public static test() {
-        RPRomise.test();
+        Entry.init();
     }
 }
 

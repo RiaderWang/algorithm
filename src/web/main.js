@@ -1,3 +1,3 @@
 const RData = require('./RData');
 
-RData.base();
+RData.objectConvert();

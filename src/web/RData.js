@@ -1,5 +1,8 @@
 /**基础数据类型 */
 const base = function() {
+    //js的7种基本类型
+    let primitiveTypes = ['string','number','null','undefined','boolean','symbol', 'bigint'];
+
     let bool0 = '1' == 1; // string转换成number，再比较
     let bool1 = '1' === 1; // 值和类型都必须相等
     console.log(bool0, bool1);
@@ -16,6 +19,14 @@ const base = function() {
     let mul = a * b; // number和string相乘时，会将string转换成number，最后得到一个number
     let div = a / b; // number和string相除时，会将string转换成number，最后得到一个number
     console.log(add, sub, mul, div, typeof(add), typeof(sub), typeof(mul), typeof(div));
+
+
+    console.log(!!null)
+
+    let num = +'10'; //10，将字符串转换成数值型，
+    let num2 = -'10'; //-10，将字符串转换成数值型
+    console.log(num, typeof(num));
+    console.log(num2, typeof(num2));
 }
 
 /**基本类型的隐式转换 */
