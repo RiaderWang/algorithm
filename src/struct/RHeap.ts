@@ -59,7 +59,7 @@ class RHeap {
      * @param data 
      */
     public buildHeap(data: Array<number>): Array<number> {
-        let sindex = parseInt((data.length - 2) / 2 + ''); //计算出非椰子节点
+        let sindex = parseInt((data.length - 2) / 2 + ''); //计算出非叶子节点
         for (let i = sindex; i >= 0; i--) {
             this.downAdjust(data, i, data.length);
         }

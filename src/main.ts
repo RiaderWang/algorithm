@@ -10,6 +10,7 @@ import QuickSort from './sort/QuickSort';
 import RPRomise from './web/RPromise';
 import HeapSort from './sort/HeapSort';
 
+import DSU from './method/DSU';
 
 // import Entry from './design/Observer/Entry';
 import Entry from './design/Publish/Entry';
@@ -19,7 +20,7 @@ class Main {
     }
 
     public static test() {
-        Entry.init();
+        DSU.test();
     }
 }
 

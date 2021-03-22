@@ -155,10 +155,104 @@ const memoryDemo = function() {
     console.log(bb);
 }
 
+// call应用
+const callDemo = function() {
+    let phper = {
+        name: 'php',
+        getWorld: function() {
+            return `${this.name} is the best language in the world`;
+        }
+    }
+
+    let language = {
+        name: 'javascript'
+    }
+
+    console.log(phper.getWorld.call(language));
+    console.log(phper.getWorld.apply(language));
+    console.log(phper.getWorld.bind(language)());
+
+    let argsfun = {
+        func: function(...args) {
+            console.log(args);
+        }
+    }
+
+    let obj = {
+        name: 'php'
+    }
+
+    argsfun.func.call(obj, '1','2','3');
+    argsfun.func.apply(obj, ['1','2','3']);
+    argsfun.func.bind(obj)('1','2','3');
+}
+
+// call 实现
+const callComply = function() {
+    Function.prototype._call = function() {
+        ctx = arguments[0] || window;
+        ctx._fn = this;
+
+        let _args = [];
+        for (let i = 1; i < arguments.length; i++) {
+            _args.push(arguments[i]);
+        }
+
+        let val = ctx._fn(..._args);
+        delete ctx._fn;
+        return val
+    }
+
+    Function.prototype._apply = function() {
+        ctx = arguments[0] || window;
+        ctx._fn_ = this;
+        let _args = [];
+        if (arguments[1]) {
+            _args = arguments[1];
+        }
+
+        let val = ctx._fn_(_args);
+        delete ctx._fn_;
+        return val;
+    }
+
+    Function.prototype._bind = function() {
+        ctx = arguments[0] || window;
+        ctx._fn = this;
+
+        let _args = [];
+        for (let i = 1; i < arguments.length; i++) {
+            _args.push(arguments[i]);
+        }
+
+        let result = function() {
+            console.log(ctx);
+            return ctx[_fn](..._args);
+        };
+        delete ctx._fn;
+        return result;
+    }
+
+    let obj = {
+        name: 'js'
+    }
+    function func() {
+        console.log(this.name);
+        console.log(arguments);
+    }
+    func._call(obj, 1, 2, 3);
+
+    func._apply(obj, [1,2,3]);
+
+    func._bind(obj,1,2,3)();
+}
+
 module.exports = {
     base,
     baseConversion,
     objectConvert,
     typeDemo,
     memoryDemo,
+    callDemo,
+    callComply,
 }
